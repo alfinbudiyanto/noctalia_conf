@@ -1,0 +1,11 @@
+[widget.clock]
+format	= "{:%-I:%M %p}"
+
+[control_center.calendar]
+event_time_format = "%-I:%M %p"
+
+# [lockscreen_widgets.widget.clock_main.settings]
+# format = "{:%-I:%M %p}"
+
+[lockscreen_widgets.widget."lockscreen-widget-0000000000000004".settings]
+format = "{:%-I:%M %p}"
