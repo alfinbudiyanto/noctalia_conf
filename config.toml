@@ -1,9 +1,16 @@
 [shell]
 time_format	= "{:%-I:%M %p}"      # default time format for shell UI without its own setting
-# date_format	= "%A, %x"        # default date format for shell UI without its own setting
 
 [osd]
 monitors	= ["eDP-1"]    # connector names; omit or leave empty for all monitors
 
 [lockscreen]
 monitors	= ["eDP-1"]        # connectors that show the lock screen; empty = all outputs, others stay black
+
+[dock]
+active_monitor_only = true
+monitors = [ "eDP-1" ]
+show_dots = true
+
+#[control_center.calendar]
+#event_time_format = "%-I:%M %p"
