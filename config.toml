@@ -12,5 +12,11 @@ active_monitor_only = true
 monitors = [ "eDP-1" ]
 show_dots = true
 
+[idle.behavior.custom-power]
+timeout = 30
+action = "command"
+command = "noctalia msg dpms-off"
+resume_command = "noctalia msg dpms-on && some_shell_command"
+
 #[control_center.calendar]
 #event_time_format = "%-I:%M %p"
