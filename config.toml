@@ -18,5 +18,10 @@ action = "command"
 command = "wlopm --off '*'"		# "noctalia msg dpms-off"
 resume_command = "wlopm --on '*' && notify-send 'Welcome back, ALFIN!' 'Your monitors have been turned back on.'"	# "noctalia msg dpms-on && some_shell_command"
 
+# # Examples
+# - Monitor: “Welcome back, ALFIN! Your monitors have been turned back on.”
+# - Lock: “Welcome back, ALFIN! Your session has been unlocked.”
+# - Suspend: “Welcome back, ALFIN! Your system has resumed from suspend.” 
+
 #[control_center.calendar]
 #event_time_format = "%-I:%M %p"
