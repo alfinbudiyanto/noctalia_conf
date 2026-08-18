@@ -13,10 +13,10 @@ monitors = [ "eDP-1" ]
 show_dots = true
 
 [idle.behavior.custom-power]
-timeout = 30
+timeout = 300
 action = "command"
-command = "noctalia msg dpms-off"
-resume_command = "noctalia msg dpms-on && some_shell_command"
+command = "wlopm --off '*'"		# "noctalia msg dpms-off"
+resume_command = "wlopm --on '*' && notify-send 'Welcome back, ALFIN!' 'Your monitors are back on.'"	# "noctalia msg dpms-on && some_shell_command"
 
 #[control_center.calendar]
 #event_time_format = "%-I:%M %p"
