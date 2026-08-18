@@ -8,7 +8,7 @@ monitors	= ["eDP-1"]    # connector names; omit or leave empty for all monitors
 monitors	= ["eDP-1"]        # connectors that show the lock screen; empty = all outputs, others stay black
 
 [dock]
-#active_monitor_only = false
+active_monitor_only = false
 monitors = [ "eDP-1" ]
 show_dots = true
 
