@@ -28,8 +28,12 @@ printf '%s\n' "$percent" > "$state_file"
 
 # Fire once when crossing below the threshold, not every time the battery changes below it.
 if (( previous >= threshold && percent < threshold )); then
-  powerprofilesctl set power-saver
   notify-send -u critical "Battery low" "Battery is ${percent}%."
+
+  power_profile="$(powerprofilesctl get)"
+  if [[ "$power_profile" != "power-saver" ]]; then
+    powerprofilesctl set power-saver
+  fi
   # Or run any other command, for example:
   # systemctl --user start low-battery.target
 fi
