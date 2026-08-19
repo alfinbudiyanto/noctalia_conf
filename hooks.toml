@@ -1,0 +1,39 @@
+[hooks]
+# Start a user unit after Noctalia IPC is ready.
+started = "systemctl --user start noctalia-ready.target"
+
+# Log wallpaper changes with the connector-specific payload.
+#wallpaper_changed = "logger -t noctalia-hooks \"wallpaper: $NOCTALIA_WALLPAPER_CONNECTOR $NOCTALIA_WALLPAPER_PATH\""
+#colors_changed = [
+#  "systemctl --user reload foot-server.service",
+#  "logger -t noctalia-hooks 'palette colors changed'",
+#]
+#theme_mode_changed = "logger -t noctalia-hooks \"mode: $NOCTALIA_THEME_MODE\""
+
+# Combine normal shell commands with Noctalia IPC commands.
+session_locked = [
+  "playerctl pause",
+  "noctalia msg bar-hide",
+]
+session_unlocked = [
+  "noctalia msg bar-show",
+  "noctalia msg dpms-on && notify-send 'Session resumed'",
+]
+
+#logging_out   = "logger -t noctalia-hooks 'logout requested'"
+rebooting     = "systemctl --user stop backup-sync.service"
+shutting_down = "systemctl --user stop backup-sync.service"
+
+# External or IPC-initiated Wi-Fi, Bluetooth, and power profile changes use OSD.
+# Use hooks only for extra side effects.
+#wifi_enabled  = "logger -t noctalia-hooks 'Wi-Fi radio enabled'"
+#wifi_disabled = "logger -t noctalia-hooks 'Wi-Fi radio disabled'"
+
+#bluetooth_enabled  = "logger -t noctalia-hooks 'Bluetooth powered on'"
+#bluetooth_disabled = "logger -t noctalia-hooks 'Bluetooth powered off'"
+
+#battery_charging           = "logger -t noctalia-hooks 'Battery charging'"
+#battery_discharging        = "logger -t noctalia-hooks 'Battery discharging'"
+#battery_plugged            = "logger -t noctalia-hooks 'Battery plugged'"
+battery_percentage_changed = "NOCTALIA_BATTERY_THRESHOLD=20 ~/.config/noctalia/hooks/battery-threshold.sh"
+#power_profile_changed   = "logger -t noctalia-hooks \"Power profile: $NOCTALIA_POWER_PROFILE_PREVIOUS -> $NOCTALIA_POWER_PROFILE ($NOCTALIA_POWER_PROFILE_ORIGIN)\""
