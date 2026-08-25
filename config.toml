@@ -1,15 +1,15 @@
 [shell]
-time_format	= "{:%-I:%M %p}"      # default time format for shell UI without its own setting
+time_format = "{:%-I:%M %p}"      # default time format for shell UI without its own setting
 
 # # Examples
 # - Monitor: “Welcome back, ALFIN! Your monitors have been turned back on.”
 # - Lock: “Welcome back, ALFIN! Your session has been unlocked.”
 # - Suspend: “Welcome back, ALFIN! Your system has resumed from suspend.” 
 [idle.behavior.custom-power]
-timeout = 300
-action = "command"
-command = "wlopm --off '*'"		# "noctalia msg dpms-off"
-resume_command = "wlopm --on '*' && notify-send 'Welcome back, ALFIN!' 'Your monitors have been turned back on.'"	# "noctalia msg dpms-on && some_shell_command"
+timeout		= 300
+action		= "command"
+command		= "wlopm --off '*'"		# "noctalia msg dpms-off"
+resume_command	= "wlopm --on '*' && notify-send 'Welcome back, ALFIN!' 'Your monitors have been turned back on.'"	# "noctalia msg dpms-on && some_shell_command"
 
 #[control_center.calendar]
 #event_time_format = "%-I:%M %p"
@@ -21,9 +21,9 @@ monitors	= [ "eDP-1" ]    # connector names; omit or leave empty for all monitor
 monitors	= [ "eDP-1" ]
 
 [dock]
-active_monitor_only = false
-monitors = [ "eDP-1" ]
-show_dots = true
+active_monitor_only	= false
+monitors		= [ "eDP-1" ]
+show_dots		= true
 
 [lockscreen]
 monitors	= [ "eDP-1" ]        # connectors that show the lock screen; empty = all outputs, others stay black
