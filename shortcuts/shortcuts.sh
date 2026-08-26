@@ -21,5 +21,4 @@ fuzzel_pid=$!
 
 noctalia msg "$panel_id"
 
-kill "$fuzzel_pid" 2>/dev/null || true
-
+kill "$fuzzel_pid" 2>/dev/null || exit 0
