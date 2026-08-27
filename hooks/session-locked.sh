@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+playerctl pause || true
+
 wifi_status=$(noctalia msg wifi-status)
 bt_status=$(noctalia msg bluetooth-status)
 
