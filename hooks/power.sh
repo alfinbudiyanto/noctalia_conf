@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-#systemctl --user stop backup-sync.service || true
+systemctl --user stop backup-sync.service || true
 
 wifi_status=$(noctalia msg wifi-status)
 bt_status=$(noctalia msg bluetooth-status)
