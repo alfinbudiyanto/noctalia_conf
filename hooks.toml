@@ -2,6 +2,14 @@
 # Start a user unit after Noctalia IPC is ready.
 started = "systemctl --user start noctalia-ready.target"
 
+# Combine normal shell commands with Noctalia IPC commands.
+session_locked = "~/.config/noctalia/hooks/session-locked.sh"
+session_unlocked = "~/.config/noctalia/hooks/session-unlocked.sh"
+
+#logging_out   = "logger -t noctalia-hooks 'logout requested'"
+rebooting     = "systemctl --user stop backup-sync.service"
+shutting_down = "systemctl --user stop backup-sync.service"
+
 # Log wallpaper changes with the connector-specific payload.
 #wallpaper_changed = "logger -t noctalia-hooks \"wallpaper: $NOCTALIA_WALLPAPER_CONNECTOR $NOCTALIA_WALLPAPER_PATH\""
 #colors_changed = [
@@ -9,20 +17,6 @@ started = "systemctl --user start noctalia-ready.target"
 #  "logger -t noctalia-hooks 'palette colors changed'",
 #]
 #theme_mode_changed = "logger -t noctalia-hooks \"mode: $NOCTALIA_THEME_MODE\""
-
-# Combine normal shell commands with Noctalia IPC commands.
-session_locked = [
-  "playerctl pause",
-  "noctalia msg bar-hide",
-]
-session_unlocked = [
-  "noctalia msg bar-show",
-  "noctalia msg dpms-on && notify-send 'Session resumed'",
-]
-
-#logging_out   = "logger -t noctalia-hooks 'logout requested'"
-rebooting     = "systemctl --user stop backup-sync.service"
-shutting_down = "systemctl --user stop backup-sync.service"
 
 # External or IPC-initiated Wi-Fi, Bluetooth, and power profile changes use OSD.
 # Use hooks only for extra side effects.
