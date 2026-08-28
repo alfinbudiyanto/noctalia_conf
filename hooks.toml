@@ -1,6 +1,6 @@
 [hooks]
 # Start a user unit after Noctalia IPC is ready.
-started = "systemctl --user start noctalia-ready.target"
+started = "~/.config/noctalia/hooks/startup.sh"
 
 # Log wallpaper changes with the connector-specific payload.
 #wallpaper_changed = "logger -t noctalia-hooks \"wallpaper: $NOCTALIA_WALLPAPER_CONNECTOR $NOCTALIA_WALLPAPER_PATH\""
@@ -21,16 +21,16 @@ session_unlocked = [
 ]
 
 #logging_out   = "logger -t noctalia-hooks 'logout requested'"
-rebooting     = "systemctl --user stop backup-sync.service"
-shutting_down = "systemctl --user stop backup-sync.service"
+rebooting     = "~/.config/noctalia/hooks/power.sh"
+shutting_down = "~/.config/noctalia/hooks/power.sh"
 
 # External or IPC-initiated Wi-Fi, Bluetooth, and power profile changes use OSD.
 # Use hooks only for extra side effects.
-#wifi_enabled  = "logger -t noctalia-hooks 'Wi-Fi radio enabled'"
-#wifi_disabled = "logger -t noctalia-hooks 'Wi-Fi radio disabled'"
+wifi_enabled  = "~/.config/noctalia/hooks/network.sh"
+wifi_disabled = "~/.config/noctalia/hooks/network.sh"
 
-#bluetooth_enabled  = "logger -t noctalia-hooks 'Bluetooth powered on'"
-#bluetooth_disabled = "logger -t noctalia-hooks 'Bluetooth powered off'"
+bluetooth_enabled  = "~/.config/noctalia/hooks/bluetooth.sh"
+bluetooth_disabled = "~/.config/noctalia/hooks/bluetooth.sh"
 
 battery_charging           = "~/.config/noctalia/hooks/battery-charging.sh"
 battery_discharging        = "~/.config/noctalia/hooks/battery-discharging.sh"
