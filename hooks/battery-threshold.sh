@@ -30,9 +30,8 @@ printf '%s\n' "$percent" > "$state_file"
 if (( previous >= threshold && percent < threshold )); then
   notify-send -u critical "Battery low" "Battery is ${percent}%."
 
-  power_profile="$(powerprofilesctl get)"
-  if [[ "$power_profile" != "power-saver" ]]; then
-    powerprofilesctl set power-saver
+  if [[ "${NOCTALIA_POWER_PROFILE:-}" != "power-saver" ]]; then
+    noctalia msg power-set power-saver
   fi
   # Or run any other command, for example:
   # systemctl --user start low-battery.target

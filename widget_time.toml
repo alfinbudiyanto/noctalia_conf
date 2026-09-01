@@ -3,5 +3,5 @@
 format	= "{:%-I:%M %p}"
 
 # # Lockscreen widget
-[lockscreen_widgets.widget."lockscreen-widget-0000000000000004".settings]
-format = "{:%-I:%M %p}"
+#[lockscreen_widgets.widget."lockscreen-widget-0000000000000004".settings]
+#format = "{:%-I:%M %p}"
