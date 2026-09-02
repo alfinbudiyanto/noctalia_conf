@@ -1,11 +1,9 @@
 [hooks]
 # Start a user unit after Noctalia IPC is ready.
 started = "~/.config/noctalia/hooks/startup.sh"
-
 # Combine normal shell commands with Noctalia IPC commands.
 session_locked = "~/.config/noctalia/hooks/session-locked.sh"
 session_unlocked = "~/.config/noctalia/hooks/session-unlocked.sh"
-
 #logging_out   = "logger -t noctalia-hooks 'logout requested'"
 rebooting     = "~/.config/noctalia/hooks/power.sh"
 shutting_down = "~/.config/noctalia/hooks/power.sh"

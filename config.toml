@@ -34,7 +34,6 @@ custom_schedule = true
 sunrise = "07:00"
 sunset = "17:00"
 
-
 [nightlight]
 enabled = true
 temperature_day = 6500
