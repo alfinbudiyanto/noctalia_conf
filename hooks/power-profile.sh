@@ -10,7 +10,7 @@ case "${NOCTALIA_POWER_PROFILE:-}" in
         ;;
 esac
 
-prower_profile_prev="${NOCTALIA_POWER_PROFILE_PREVIOUS:-}"
+power_profile_prev="${NOCTALIA_POWER_PROFILE_PREVIOUS:-}"
 
 state_dir="${XDG_STATE_HOME:-$HOME/.local/state}/noctalia"
 state_file="$state_dir/power-profile-prev"
