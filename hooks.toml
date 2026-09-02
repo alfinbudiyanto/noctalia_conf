@@ -1,12 +1,34 @@
 [hooks]
 # Start a user unit after Noctalia IPC is ready.
-started = "~/.config/noctalia/hooks/startup.sh"
+started = [
+    "systemctl --user start noctalia-ready.target",
+    "~/.config/noctalia/hooks/wifi-startup.sh",
+    "~/.config/noctalia/hooks/bluetooth-startup.sh",
+]
 # Combine normal shell commands with Noctalia IPC commands.
-session_locked = "~/.config/noctalia/hooks/session-locked.sh"
-session_unlocked = "~/.config/noctalia/hooks/session-unlocked.sh"
+session_locked = [
+    "playerctl pause",
+    "noctalia msg bar-hide",
+    "~/.config/noctalia/hooks/wifi.sh",
+    "~/.config/noctalia/hooks/bluetooth.sh",
+]
+session_unlocked = [
+    "noctalia msg bar-show",
+    "noctalia msg dpms-on && notify-send 'Session resumed'",
+    "~/.config/noctalia/hooks/wifi-startup.sh",
+    "~/.config/noctalia/hooks/bluetooth-startup.sh",
+]
 #logging_out   = "logger -t noctalia-hooks 'logout requested'"
-rebooting     = "~/.config/noctalia/hooks/power.sh"
-shutting_down = "~/.config/noctalia/hooks/power.sh"
+rebooting     = [
+    "systemctl --user stop backup-sync.service",
+    "~/.config/noctalia/hooks/wifi.sh",
+    "~/.config/noctalia/hooks/bluetooth.sh",
+]
+shutting_down = [
+    "systemctl --user stop backup-sync.service",
+    "~/.config/noctalia/hooks/wifi.sh",
+    "~/.config/noctalia/hooks/bluetooth.sh",
+]
 
 # Log wallpaper changes with the connector-specific payload.
 #wallpaper_changed = "logger -t noctalia-hooks \"wallpaper: $NOCTALIA_WALLPAPER_CONNECTOR $NOCTALIA_WALLPAPER_PATH\""
@@ -18,8 +40,8 @@ shutting_down = "~/.config/noctalia/hooks/power.sh"
 
 # External or IPC-initiated Wi-Fi, Bluetooth, and power profile changes use OSD.
 # Use hooks only for extra side effects.
-wifi_enabled  = "~/.config/noctalia/hooks/network.sh"
-wifi_disabled = "~/.config/noctalia/hooks/network.sh"
+wifi_enabled  = "~/.config/noctalia/hooks/wifi.sh"
+wifi_disabled = "~/.config/noctalia/hooks/wifi.sh"
 
 bluetooth_enabled  = "~/.config/noctalia/hooks/bluetooth.sh"
 bluetooth_disabled = "~/.config/noctalia/hooks/bluetooth.sh"
