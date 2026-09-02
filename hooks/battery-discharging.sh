@@ -1,8 +1,13 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-power_profile="$(powerprofilesctl get)"
+state_dir="${XDG_STATE_HOME:-$HOME/.local/state}/noctalia"
+state_file="$state_dir/power-profile-prev"
 
-if [[ "$power_profile" == "performance" ]]; then
-    powerprofilesctl set balanced
-fi
+previous=""
+[[ -r "$state_file" ]] && previous="$(<"$state_file")"
+
+[[ -n "$previous" ]] || exit 0
+[[ "$previous" != "performance" ]] || exit 0
+
+noctalia msg power-set "$previous"

@@ -9,6 +9,9 @@ state_file="$state_dir/bt-state"
 
 mkdir -p "$state_dir"
 
-if [[ "$bt_state" != "$state_file" ]]; then
-    printf '%s\n' "$bt_state" > "$state_file"
-fi
+previous=""
+[[ -r "$state_file" ]] && previous="$(<"$state_file")"
+
+[[ "$previous" != "$bt_state" ]] || exit 0
+
+printf '%s\n' "$bt_state" > "$state_file"
