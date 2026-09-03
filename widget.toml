@@ -1,10 +1,10 @@
 # # Bar widget
-[widget.clock]
-format	= "{:%-I:%M %p}"
-
 [widget.workspaces]
 capsule = true
 capsule_border = "secondary"
+
+[widget.clock]
+format	= "{:%-I:%M %p}"
 
 # # Lockscreen widget
 #[lockscreen_widgets.widget."lockscreen-widget-0000000000000004".settings]
