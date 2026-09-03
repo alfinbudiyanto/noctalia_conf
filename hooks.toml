@@ -43,11 +43,11 @@ shutting_down = [
 wifi_enabled  = "~/.config/noctalia/hooks/wifi.sh"
 wifi_disabled = "~/.config/noctalia/hooks/wifi.sh"
 
-bluetooth_enabled  = "~/.config/noctalia/hooks/bluetooth.sh"
-bluetooth_disabled = "~/.config/noctalia/hooks/bluetooth.sh"
+#bluetooth_enabled  = "~/.config/noctalia/hooks/bluetooth.sh"
+#bluetooth_disabled = "~/.config/noctalia/hooks/bluetooth.sh"
 
 battery_charging           = "~/.config/noctalia/hooks/battery-charging.sh"
 battery_discharging        = "~/.config/noctalia/hooks/battery-discharging.sh"
 #battery_plugged            = "logger -t noctalia-hooks 'Battery plugged'"
-battery_percentage_changed = "NOCTALIA_BATTERY_THRESHOLD=20 ~/.config/noctalia/hooks/battery-threshold.sh"
+battery_percentage_changed = "NOCTALIA_BATTERY_THRESHOLD=26 ~/.config/noctalia/hooks/battery-threshold.sh"
 power_profile_changed   = "~/.config/noctalia/hooks/power-profile.sh"
