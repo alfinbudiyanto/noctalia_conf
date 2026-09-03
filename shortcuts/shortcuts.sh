@@ -4,14 +4,14 @@ set -euo pipefail
 panel_id="${1:-panel-toggle launcher}"
 output=$(driftwm msg state | grep '^outputs' | awk '{print $2}')
 
-[[ "$output" != 1 ]] || {
+[[ "$output" != "1" ]] || {
     noctalia msg "$panel_id"
     exit 0
 }
 
 panel=$(noctalia msg status | grep '"activePanelId"' | awk '{print $2}' | tr -d ',"')
 
-[[ "$panel" == null ]] || {
+[[ "$panel" == "null" ]] || {
     noctalia msg "$panel_id"
     exit 0
 }
