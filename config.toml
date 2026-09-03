@@ -180,5 +180,5 @@ label = "ALFIN"
 glyph = "user"
 countdown_seconds = 0.0
 enabled = true
-shortcut = "6"
+shortcut = "0"
 variant = "outline"
