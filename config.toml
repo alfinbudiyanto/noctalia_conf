@@ -1,18 +1,36 @@
+[audio]
+enable_overdrive = true
+enable_sounds = true
+sound_volume = 0.99999997764825821
+
 [shell]
-time_format = "{:%-I:%M %p}"      # default time format for shell UI without its own setting
+telemetry_enabled = true
+time_format		= "{:%-I:%M %p}"	# default time format for shell UI without its own setting
+polkit_agent		= true			# register Noctalia's native polkit authentication agent
+password_style		= "random"		# default | random
+screen_time_enabled	= true			# track per-app usage time for the Control Center screen-time view
 
-# # Examples
-# - Monitor: “Welcome back, ALFIN! Your monitors have been turned back on.”
-# - Lock: “Welcome back, ALFIN! Your session has been unlocked.”
-# - Suspend: “Welcome back, ALFIN! Your system has resumed from suspend.” 
-[idle.behavior.custom-power]
-timeout		= 300
-action		= "command"
-command		= "wlopm --off '*'"		# "noctalia msg dpms-off"
-resume_command	= "wlopm --on '*' && notify-send 'Welcome back, ALFIN!' 'Your monitors have been turned back on.'"	# "noctalia msg dpms-on && some_shell_command"
+[shell.screen_corners]
+enabled = true
+size = 24
 
-#[control_center.calendar]
-#event_time_format = "%-I:%M %p"
+[shell.screenshot]
+directory = "/home/wolfei/Pictures/Noctalia/Screenshot"
+
+[bar.default]
+end = [
+    "tray",
+    "notifications",
+    "clipboard",
+    "network",
+    "bluetooth",
+    "volume",
+    "brightness",
+    "battery",
+    "control-center",
+    "session"
+]
+start = [ "launcher", "wallpaper", "workspaces", "media" ]
 
 [osd]
 monitors	= [ "eDP-1" ]    # connector names; omit or leave empty for all monitors
@@ -38,3 +56,57 @@ sunset = "17:00"
 enabled = true
 temperature_day = 6500
 temperature_night = 3300
+
+[theme]
+source = "wallpaper"
+wallpaper_scheme = "vibrant"
+
+[calendar]
+enabled = true
+
+    [calendar.account.personal_google]
+    name = "Squad"
+    type = "google"
+
+    [calendar.account.alfinbudiyanto26102006]
+    name = "Alfin Budiyanto"
+    type = "google"
+
+    [calendar.account.programmer]
+    name = "Programmer"
+    type = "google"
+
+    [calendar.account.game]
+    name = "Game"
+    type = "google"
+
+[control_center.calendar]
+event_time_format = "%-I:%M %p"
+show_week_numbers = true
+
+# # Examples
+# - Monitor: “Welcome back, ALFIN! Your monitors have been turned back on.”
+# - Lock: “Welcome back, ALFIN! Your session has been unlocked.”
+# - Suspend: “Welcome back, ALFIN! Your system has resumed from suspend.” 
+[idle]
+behavior_order = [ "idle-behavior", "Screen Off", "idle-behavior-2" ]
+pre_action_fade_seconds = 13
+
+    [idle.behavior.idle-behavior]
+    action = "lock"
+    enabled = true
+    resume_command = "notify-send 'Idle Lock' \"Welcome back Alfin!\\nYou're comeback once idle lock\""
+    timeout = 180.0
+
+    [idle.behavior."Screen Off"]
+    action = "command"
+    command = "wlopm --off '*'"
+    enabled = true
+    resume_command = "wlopm --on '*' && notify-send 'Idle Screen Off' \"Welcome back, ALFIN!\\nYou're comeback once idle screen off.\""
+    timeout = 300.0
+
+    [idle.behavior.idle-behavior-2]
+    action = "lock_and_suspend"
+    enabled = true
+    resume_command = "notify-send 'Idle Sleep' \"Welcome back Alfin!\\nYou're comeback once idle sleep\""
+    timeout = 1980.0

@@ -18,7 +18,10 @@ session_unlocked = [
     "~/.config/noctalia/hooks/wifi-startup.sh",
     "~/.config/noctalia/hooks/bluetooth-startup.sh",
 ]
-#logging_out   = "logger -t noctalia-hooks 'logout requested'"
+logging_out   = [
+    "~/.config/noctalia/hooks/wifi.sh",
+    "~/.config/noctalia/hooks/bluetooth.sh",
+]
 rebooting     = [
     "systemctl --user stop backup-sync.service",
     "~/.config/noctalia/hooks/wifi.sh",
