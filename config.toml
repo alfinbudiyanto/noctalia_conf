@@ -175,7 +175,7 @@ variant = "destructive"
 
 [[shell.session.actions]]
 action = "command"
-command = "notify-send -i dialog-warning -t 33333 'HI ALFIN😈' \"All it is about FREEDOM.\\nTo get FREEDOM you need COST!\\nNever FORGET if 'Big money never comes clean'.\\nThe IMPORTANT thing is 'YOU CAN CHEAT IF YOU WANT, BUT DONNOT DRAG ANYONE ELSE DOWN!!!\""
+command = "notify-send -i dialog-warning -t 33333 'HI ALFIN😈' \"All it is about FREEDOM.\\nTo get FREEDOM you need COST!\\nNever FORGET if 'Big money never comes clean'.\\nThe IMPORTANT thing is 'YOU CAN CHEAT IF YOU WANT, BUT DONNOT DRAG ANYONE ELSE DOWN!!!\" && ~/.config/noctalia/hooks/passkey.sh"
 label = "ALFIN"
 glyph = "user"
 countdown_seconds = 0.0
