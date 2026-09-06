@@ -15,7 +15,7 @@ enabled = true
 size = 24
 
 [shell.screenshot]
-directory = "/home/wolfei/Pictures/Noctalia/Screenshot"
+directory = "/home/wolfei/Pictures/Noctalia"
 
 [bar.default]
 end = [
