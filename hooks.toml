@@ -4,6 +4,7 @@ started = [
     "systemctl --user start noctalia-ready.target",
     "~/.config/noctalia/hooks/wifi-startup.sh",
     "~/.config/noctalia/hooks/bluetooth-startup.sh",
+    "~/.config/noctalia/shortcuts/virtual-cable-pipewire.sh",
 ]
 # Combine normal shell commands with Noctalia IPC commands.
 session_locked = [
