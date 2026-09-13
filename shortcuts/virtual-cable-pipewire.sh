@@ -12,32 +12,32 @@
 # Ubuntu or most apt based systems "sudo apt install pavucontrol pulseaudio-utils" #please tell me if this wrong I don't have apt to test sorry.
 
 
-echo "You should reset Pipewire to last defaults  before 'running programs may need to be restarted. OBS will need this. Best to run when no apps are running " 
+#echo "You should reset Pipewire to last defaults  before 'running programs may need to be restarted. OBS will need this. Best to run when no apps are running " 
 
-echo " "
+#echo " "
 
-echo "VirtualSpeaker"
+#echo "VirtualSpeaker"
 # Create a virtual sink that can be set as a monitor in OBS
 pactl load-module module-null-sink sink_name="VirtualSpeaker" sink_properties=device.description=VirtualSpeaker
-echo " "
-echo "VirtualMic"
+#echo " "
+#echo "VirtualMic"
 # Link it with a virtual source that is visible in pulseaudio apps like Zoom
 pactl load-module module-null-sink media.class=Audio/Source/Virtual sink_name="VirtualMic" channel_map=front-left,front-right
-echo " "
-echo "Linking together"
+#echo " "
+#echo "Linking together"
 pw-link VirtualSpeaker:monitor_FL VirtualMic:input_FL
 pw-link VirtualSpeaker:monitor_FR VirtualMic:input_FR
-echo " "
-echo "Loopback"
+#echo " "
+#echo "Loopback"
 #Add loopback to hear comment out if you wish to disable
 pactl load-module module-loopback sink_name="LoopbackSync" source="VirtualSpeaker.monitor"
-echo " "
-echo " "
-echo "If no errors done!"
-echo " "
-echo " "
-echo " To configure loop back in pulseaudio manager. This will be needed to do each time sorry."
-echo "Use this comand to reset:"
-echo "systemctl --user restart pipewire pipewire-pulse"
-echo "from https://luke.hsiao.dev/blog/pipewire-virtual-microphone/"
-echo "Updates at : https://github.com/steven3363/Virtual-Cables-Linux"
+#echo " "
+#echo " "
+#echo "If no errors done!"
+#echo " "
+#echo " "
+#echo " To configure loop back in pulseaudio manager. This will be needed to do each time sorry."
+#echo "Use this comand to reset:"
+#echo "systemctl --user restart pipewire pipewire-pulse"
+#echo "from https://luke.hsiao.dev/blog/pipewire-virtual-microphone/"
+#echo "Updates at : https://github.com/steven3363/Virtual-Cables-Linux"
