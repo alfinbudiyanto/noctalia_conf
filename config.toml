@@ -71,7 +71,7 @@ sunset = "17:00"
 [nightlight]
 enabled = true
 temperature_day = 6500
-temperature_night = 3300
+temperature_night = 2750
 
 [theme]
 source = "wallpaper"
