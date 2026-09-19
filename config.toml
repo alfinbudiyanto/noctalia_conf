@@ -35,7 +35,6 @@ start = [ "launcher", "wallpaper", "workspaces", "media" ]
 [bar.default.monitor.dp1]
 match = "DP-1"
 margin_ends = 350
-widget_spacing = 88
 end = [ "media" ]
 center = [ "clock" ]
 start = [ "workspaces" ]
@@ -43,7 +42,6 @@ start = [ "workspaces" ]
 [bar.default.monitor.hdmia1]
 match = "HDMI-A-1"
 margin_ends = 350
-widget_spacing = 88
 end = [ "media" ]
 center = [ "clock" ]
 start = [ "workspaces" ]
