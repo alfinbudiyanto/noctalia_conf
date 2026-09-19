@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+imv "${XDG_STATE_HOME:-$HOME/.config/noctalia}/assets/images/wallpaper"
