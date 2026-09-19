@@ -1,11 +1,30 @@
 # # Bar widget
+# end
+[widget.tray]
+capsule = true
+capsule_border = "secondary"
+
+[widget.battery]
+capsule = true
+
+[widget.brightness]
+capsule = true
+
+[widget.network]
+capsule = true
+
+[widget.volume]
+capsule = true
+
+#center
+[widget.clock]
+format	= "{:%-I:%M %p}"
+
+# start
 [widget.workspaces]
 capsule = true
 capsule_border = "secondary"
 
-[widget.clock]
-format	= "{:%-I:%M %p}"
-
-# # Lockscreen widget
+# Lockscreen
 #[lockscreen_widgets.widget."lockscreen-widget-0000000000000004".settings]
 #format = "{:%-I:%M %p}"
