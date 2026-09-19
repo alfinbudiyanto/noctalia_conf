@@ -5,10 +5,10 @@ sound_volume = 0.99999997764825821
 
 [shell]
 telemetry_enabled = true
-time_format		= "{:%-I:%M %p}"	# default time format for shell UI without its own setting
-polkit_agent		= true			# register Noctalia's native polkit authentication agent
-password_style		= "random"		# default | random
-screen_time_enabled	= true			# track per-app usage time for the Control Center screen-time view
+time_format = "{:%-I:%M %p}"		# default time format for shell UI without its own setting
+polkit_agent = true			# register Noctalia's native polkit authentication agent
+password_style = "random"		# default | random
+screen_time_enabled = true		# track per-app usage time for the Control Center screen-time view
 
 [shell.screen_corners]
 enabled = true
@@ -49,18 +49,18 @@ center = [ "clock" ]
 start = [ "workspaces" ]
 
 [osd]
-monitors	= [ "eDP-1" ]    # connector names; omit or leave empty for all monitors
+monitors = [ "eDP-1" ]    # connector names; omit or leave empty for all monitors
 
 [notification]
-monitors	= [ "eDP-1" ]
+monitors = [ "eDP-1" ]
 
 [dock]
-active_monitor_only	= false
-monitors		= [ "eDP-1" ]
-show_dots		= true
+active_monitor_only = false
+monitors = [ "eDP-1" ]
+show_dots = true
 
 [lockscreen]
-monitors	= [ "eDP-1" ]        # connectors that show the lock screen; empty = all outputs, others stay black
+monitors = [ "eDP-1" ]        # connectors that show the lock screen; empty = all outputs, others stay black
 
 [location]
 auto_locate = true
