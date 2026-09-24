@@ -14,6 +14,10 @@ screen_time_enabled = true		# track per-app usage time for the Control Center sc
 enabled = true
 size = 24
 
+[shell.session]
+grid = true
+grid_columns = 2
+
 [shell.screenshot]
 directory = "/home/wolfei/Pictures/Noctalia"
 
@@ -130,7 +134,7 @@ glyph = "bell"
 countdown_seconds = 0.0
 enabled = true
 shortcut = "d"
-variant = "outline"
+variant = "default"
 
 [[shell.session.actions]]
 action = "command"
@@ -191,4 +195,4 @@ glyph = "user"
 countdown_seconds = 0.0
 enabled = true
 shortcut = "0"
-variant = "outline"
+variant = "secondary"
