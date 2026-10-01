@@ -2,39 +2,39 @@
 # Start a user unit after Noctalia IPC is ready.
 started = [
     "systemctl --user start noctalia-ready.target",
-    "~/.config/noctalia/hooks/wifi-startup.sh",
-    "~/.config/noctalia/hooks/bluetooth-startup.sh",
-    "~/.config/noctalia/shortcuts/virtual-cable-pipewire.sh",
-    "~/.config/noctalia/shortcuts/menus.sh",
-    #"~/.config/noctalia/shortcuts/internal-speaker.sh",
-    #"~/.config/noctalia/shortcuts/external-speaker.sh",
+    "~/.config/noctalia/hooks/wifi-startup",
+    "~/.config/noctalia/hooks/bluetooth-startup",
+    "~/.config/noctalia/shortcuts/virtual-cable-pipewire",
+    "~/.config/noctalia/shortcuts/menus",
+    #"~/.config/noctalia/shortcuts/internal-speaker",
+    #"~/.config/noctalia/shortcuts/external-speaker",
 ]
 # Combine normal shell commands with Noctalia IPC commands.
 session_locked = [
     "playerctl pause",
     "noctalia msg bar-hide",
-    "~/.config/noctalia/hooks/wifi.sh",
-    "~/.config/noctalia/hooks/bluetooth.sh",
+    "~/.config/noctalia/hooks/wifi",
+    "~/.config/noctalia/hooks/bluetooth",
 ]
 session_unlocked = [
     "noctalia msg bar-show",
     "noctalia msg dpms-on && notify-send 'Session resumed'",
-    "~/.config/noctalia/hooks/wifi-startup.sh",
-    "~/.config/noctalia/hooks/bluetooth-startup.sh",
+    "~/.config/noctalia/hooks/wifi-startup",
+    "~/.config/noctalia/hooks/bluetooth-startup",
 ]
 logging_out   = [
-    "~/.config/noctalia/hooks/wifi.sh",
-    "~/.config/noctalia/hooks/bluetooth.sh",
+    "~/.config/noctalia/hooks/wifi",
+    "~/.config/noctalia/hooks/bluetooth",
 ]
 rebooting     = [
     "systemctl --user stop backup-sync.service",
-    "~/.config/noctalia/hooks/wifi.sh",
-    "~/.config/noctalia/hooks/bluetooth.sh",
+    "~/.config/noctalia/hooks/wifi",
+    "~/.config/noctalia/hooks/bluetooth",
 ]
 shutting_down = [
     "systemctl --user stop backup-sync.service",
-    "~/.config/noctalia/hooks/wifi.sh",
-    "~/.config/noctalia/hooks/bluetooth.sh",
+    "~/.config/noctalia/hooks/wifi",
+    "~/.config/noctalia/hooks/bluetooth",
 ]
 
 # Log wallpaper changes with the connector-specific payload.
@@ -47,14 +47,14 @@ shutting_down = [
 
 # External or IPC-initiated Wi-Fi, Bluetooth, and power profile changes use OSD.
 # Use hooks only for extra side effects.
-wifi_enabled  = "~/.config/noctalia/hooks/wifi.sh"
-wifi_disabled = "~/.config/noctalia/hooks/wifi.sh"
+wifi_enabled  = "~/.config/noctalia/hooks/wifi"
+wifi_disabled = "~/.config/noctalia/hooks/wifi"
 
-#bluetooth_enabled  = "~/.config/noctalia/hooks/bluetooth.sh"
-#bluetooth_disabled = "~/.config/noctalia/hooks/bluetooth.sh"
+#bluetooth_enabled  = "~/.config/noctalia/hooks/bluetooth"
+#bluetooth_disabled = "~/.config/noctalia/hooks/bluetooth"
 
-battery_charging           = "~/.config/noctalia/hooks/battery-charging.sh"
-battery_discharging        = "~/.config/noctalia/hooks/battery-discharging.sh"
+battery_charging           = "~/.config/noctalia/hooks/battery-charging"
+battery_discharging        = "~/.config/noctalia/hooks/battery-discharging"
 #battery_plugged            = "logger -t noctalia-hooks 'Battery plugged'"
-battery_percentage_changed = "NOCTALIA_BATTERY_THRESHOLD=26 ~/.config/noctalia/hooks/battery-threshold.sh"
-power_profile_changed   = "~/.config/noctalia/hooks/power-profile.sh"
+battery_percentage_changed = "NOCTALIA_BATTERY_THRESHOLD=26 ~/.config/noctalia/hooks/battery-threshold"
+power_profile_changed   = "~/.config/noctalia/hooks/power-profile"
