@@ -21,20 +21,23 @@ grid_columns = 2
 [shell.screenshot]
 directory = "/home/wolfei/Pictures/Noctalia"
 
-[bar.default]
-end = [
-    "tray",
-    "notifications",
-    "clipboard",
-    "network",
-    "bluetooth",
-    "volume",
-    "brightness",
-    "battery",
-    "control-center",
-    "session"
-]
-start = [ "launcher", "wallpaper", "workspaces", "media" ]
+[bar]
+order = [ "default" ]
+
+    [bar.default]
+    end = [ "tray", "notifications", "clipboard", "network", "bluetooth", "group:g1", "control-center", "session" ]
+    start = [ "launcher", "wallpaper", "workspaces", "media" ]
+
+        [[bar.default.capsule_group]]
+        accordion = false
+        accordion_direction = "end"
+        border = "secondary"
+        enabled = true
+        fill = "surface_variant"
+        id = "g1"
+        members = [ "volume", "brightness", "battery" ]
+        opacity = 1.0
+        padding = 6.0
 
 [bar.default.monitor.dp1]
 match = "DP-1"
