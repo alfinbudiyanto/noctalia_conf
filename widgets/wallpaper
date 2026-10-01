@@ -1,2 +1,13 @@
 #!/usr/bin/env bash
-imv "${XDG_STATE_HOME:-$HOME/.config/noctalia}/assets/images/wallpaper.jpg"
+
+TARGET_IMG="${XDG_STATE_HOME:-$HOME/.config/noctalia}/assets/images/wallpaper.jpg"
+TARGET_HEIGHT=720
+
+# Ambil dimensi asli gambar (lebar & tinggi)
+read -r ORIG_W ORIG_H <<< $(identify -format "%w %h" "$TARGET_IMG")
+
+# Hitung lebar jendela proporsional
+TARGET_WIDTH=$(( ORIG_W * TARGET_HEIGHT / ORIG_H ))
+
+# Jalankan imv
+imv -W "$TARGET_WIDTH" -H "$TARGET_HEIGHT" "$TARGET_IMG"
