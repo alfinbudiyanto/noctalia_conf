@@ -2,15 +2,15 @@
 
 HARDWARE="alsa_output.pci-0000_00_1f.3.analog-stereo"
 
-# 1. Hardware ALSA Controls
-amixer -c 0 set 'Auto-Mute Mode' Disabled >/dev/null 2>&1
-amixer -c 0 set Headphone mute 0% >/dev/null 2>&1
-amixer -c 0 set Speaker unmute 100% >/dev/null 2>&1
+# 1. Disable Auto-Mute & set ALSA levels
+amixer -c 0 cset name='Auto-Mute Mode' "Disabled" >/dev/null 2>&1 || amixer -c 0 set 'Auto-Mute Mode' Disabled >/dev/null 2>&1
+amixer -c 0 set Speaker 100% unmute >/dev/null 2>&1
+amixer -c 0 set Headphone 0% mute >/dev/null 2>&1
 
-# 2. PulseAudio Port Selection
+# 2. Force PulseAudio card port
 pactl set-sink-port "$HARDWARE" analog-output-speaker >/dev/null 2>&1
 
-# 3. PipeWire Routing
+# 3. Re-link PipeWire graph
 pw-link -d EarphoneSpeaker:output_FL "$HARDWARE":playback_FL >/dev/null 2>&1
 pw-link -d EarphoneSpeaker:output_FR "$HARDWARE":playback_FR >/dev/null 2>&1
 
