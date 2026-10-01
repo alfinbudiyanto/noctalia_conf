@@ -5,6 +5,9 @@ started = [
     "~/.config/noctalia/hooks/wifi-startup.sh",
     "~/.config/noctalia/hooks/bluetooth-startup.sh",
     "~/.config/noctalia/shortcuts/virtual-cable-pipewire.sh",
+    "~/.config/noctalia/shortcuts/menus.sh",
+    #"~/.config/noctalia/shortcuts/internal-speaker.sh",
+    #"~/.config/noctalia/shortcuts/external-speaker.sh",
 ]
 # Combine normal shell commands with Noctalia IPC commands.
 session_locked = [
