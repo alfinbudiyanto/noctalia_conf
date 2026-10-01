@@ -30,7 +30,10 @@ pw-link VirtualSpeaker:monitor_FR VirtualMic:input_FR
 #echo " "
 #echo "Loopback"
 #Add loopback to hear comment out if you wish to disable
-pactl load-module module-loopback sink_name="LoopbackSync" source="VirtualSpeaker.monitor"
+#pactl load-module module-loopback sink_name="LoopbackSync" source="VirtualSpeaker.monitor"
+
+pactl load-module module-loopback sink="alsa_output.pci-0000_00_1f.3.analog-stereo" source="VirtualSpeaker.monitor"
+
 #echo " "
 #echo " "
 #echo "If no errors done!"
