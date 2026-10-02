@@ -2,10 +2,14 @@
 # Start a user unit after Noctalia IPC is ready.
 started = [
     "systemctl --user start noctalia-ready.target",
+    "/usr/libexec/xfce-polkit",
+    "driftmap --width 256 --height 144 --canvas 24242433 --active-window b85cff67 --window 9fa8c767 --suspended 4a4a4a56",
     "~/.config/noctalia/hooks/wifi-startup",
     "~/.config/noctalia/hooks/bluetooth-startup",
     "~/.config/noctalia/shortcuts/virtual-cable-pipewire",
     "~/.config/noctalia/shortcuts/menus",
+    "~/.config/noctalia/widgets/wallpaper",
+    "~/.config/noctalia/hooks/recenter-home-page",
     #"~/.config/noctalia/shortcuts/internal-speaker",
     #"~/.config/noctalia/shortcuts/external-speaker",
 ]
@@ -22,11 +26,11 @@ session_unlocked = [
     "~/.config/noctalia/hooks/wifi-startup",
     "~/.config/noctalia/hooks/bluetooth-startup",
 ]
-logging_out   = [
+logging_out = [
     "~/.config/noctalia/hooks/wifi",
     "~/.config/noctalia/hooks/bluetooth",
 ]
-rebooting     = [
+rebooting = [
     "systemctl --user stop backup-sync.service",
     "~/.config/noctalia/hooks/wifi",
     "~/.config/noctalia/hooks/bluetooth",
@@ -47,14 +51,14 @@ shutting_down = [
 
 # External or IPC-initiated Wi-Fi, Bluetooth, and power profile changes use OSD.
 # Use hooks only for extra side effects.
-wifi_enabled  = "~/.config/noctalia/hooks/wifi"
-wifi_disabled = "~/.config/noctalia/hooks/wifi"
+wifi_enabled	= "~/.config/noctalia/hooks/wifi"
+wifi_disabled	= "~/.config/noctalia/hooks/wifi"
 
-#bluetooth_enabled  = "~/.config/noctalia/hooks/bluetooth"
-#bluetooth_disabled = "~/.config/noctalia/hooks/bluetooth"
+#bluetooth_enabled	= "~/.config/noctalia/hooks/bluetooth"
+#bluetooth_disabled	= "~/.config/noctalia/hooks/bluetooth"
 
-battery_charging           = "~/.config/noctalia/hooks/battery-charging"
-battery_discharging        = "~/.config/noctalia/hooks/battery-discharging"
-#battery_plugged            = "logger -t noctalia-hooks 'Battery plugged'"
-battery_percentage_changed = "NOCTALIA_BATTERY_THRESHOLD=26 ~/.config/noctalia/hooks/battery-threshold"
-power_profile_changed   = "~/.config/noctalia/hooks/power-profile"
+battery_charging		= "~/.config/noctalia/hooks/battery-charging"
+battery_discharging		= "~/.config/noctalia/hooks/battery-discharging"
+#battery_plugged		= "logger -t noctalia-hooks 'Battery plugged'"
+battery_percentage_changed	= "NOCTALIA_BATTERY_THRESHOLD=26 ~/.config/noctalia/hooks/battery-threshold"
+power_profile_changed		= "~/.config/noctalia/hooks/power-profile"

@@ -1,13 +1,19 @@
 #!/usr/bin/env bash
+set -euo pipefail
 
 TARGET_IMG="${XDG_STATE_HOME:-$HOME/.config/noctalia}/assets/images/wallpaper.jpg"
 TARGET_HEIGHT=720
 
-# Ambil dimensi asli gambar (lebar & tinggi)
+[[ -f "$TARGET_IMG" ]] || {
+    notify-send -i dialog-warning '404' "Error: Image not found at $TARGET_IMG"
+    exit 0
+}
+
+# Get original dimensions using ImageMagick
 read -r ORIG_W ORIG_H <<< $(identify -format "%w %h" "$TARGET_IMG")
 
-# Hitung lebar jendela proporsional
+# Calculate proportional width
 TARGET_WIDTH=$(( ORIG_W * TARGET_HEIGHT / ORIG_H ))
 
-# Jalankan imv
-imv -W "$TARGET_WIDTH" -H "$TARGET_HEIGHT" "$TARGET_IMG"
+# Launch imv with a specific window class name
+imv -c widget-img -W "$TARGET_WIDTH" -H "$TARGET_HEIGHT" "$TARGET_IMG"
