@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # stop for a sec to make sure everthing is ready, main target is noctalia bar, yes only waiting for a bar ready
-sleep 1.5
+sleep 3
 
 # then recenter home page point automatically
-driftwm msg action home-toggle
+driftwm msg camera 0 17
