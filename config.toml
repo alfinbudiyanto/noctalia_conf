@@ -14,47 +14,12 @@ screen_time_enabled = true		# track per-app usage time for the Control Center sc
 enabled = true
 size = 24
 
-[shell.session]
-grid = true
-grid_columns = 2
-
 [shell.screenshot]
 directory = "/home/wolfei/Pictures/Noctalia"
 
-[bar]
-order = [ "default" ]
-
-    [bar.default]
-    end = [ "tray", "notifications", "clipboard", "network", "bluetooth", "group:g1", "control-center", "session" ]
-    start = [ "launcher", "wallpaper", "workspaces", "media" ]
-
-        [[bar.default.capsule_group]]
-        accordion = false
-        accordion_direction = "end"
-        border = "secondary"
-        enabled = true
-        fill = "surface_variant"
-        id = "g1"
-        members = [ "volume", "brightness", "battery" ]
-        opacity = 1.0
-        padding = 6.0
-
-[bar.default.monitor.dp1]
-match = "DP-1"
-margin_ends = 350
-end = [ "media" ]
-center = [ "clock" ]
-start = [ "workspaces" ]
-
-[bar.default.monitor.hdmia1]
-match = "HDMI-A-1"
-margin_ends = 350
-end = [ "media" ]
-center = [ "clock" ]
-start = [ "workspaces" ]
-
+# Monitor
 [osd]
-monitors = [ "eDP-1" ]    # connector names; omit or leave empty for all monitors
+monitors = [ "eDP-1" ]      # connector names; omit or leave empty for all monitors
 
 [notification]
 monitors = [ "eDP-1" ]
@@ -65,7 +30,7 @@ monitors = [ "eDP-1" ]
 show_dots = true
 
 [lockscreen]
-monitors = [ "eDP-1" ]        # connectors that show the lock screen; empty = all outputs, others stay black
+monitors = [ "eDP-1" ]      # connectors that show the lock screen; empty = all outputs, others stay black
 
 [location]
 auto_locate = true
@@ -100,102 +65,3 @@ enabled = true
     [calendar.account.game]
     name = "Game"
     type = "google"
-
-# # Examples
-# - Monitor: “Welcome back, ALFIN! Your monitors have been turned back on.”
-# - Lock: “Welcome back, ALFIN! Your session has been unlocked.”
-# - Suspend: “Welcome back, ALFIN! Your system has resumed from suspend.” 
-[idle]
-behavior_order = [ "idle-behavior", "Screen Off", "idle-behavior-2" ]
-pre_action_fade_seconds = 13
-
-    [idle.behavior.idle-behavior]
-    action = "lock"
-    enabled = true
-    resume_command = "notify-send 'Idle Lock' \"Welcome back Alfin!\\nYou're comeback once idle lock\""
-    timeout = 180.0
-
-    [idle.behavior."Screen Off"]
-    action = "command"
-    command = "wlopm --off '*'"
-    enabled = true
-    resume_command = "wlopm --on '*' && notify-send 'Idle Screen Off' \"Welcome back, ALFIN!\\nYou're comeback once idle screen off.\""
-    timeout = 300.0
-
-    [idle.behavior.idle-behavior-2]
-    action = "lock_and_suspend"
-    enabled = true
-    resume_command = "notify-send 'Idle Sleep' \"Welcome back Alfin!\\nYou're comeback once idle sleep\""
-    timeout = 1980.0
-
-# Session panel-toggle
-[[shell.session.actions]]
-action = "command"
-command = "noctalia msg notification-dnd-toggle"
-label = "DND"
-glyph = "bell"
-countdown_seconds = 0.0
-enabled = true
-shortcut = "d"
-variant = "default"
-
-[[shell.session.actions]]
-action = "command"
-command = "noctalia msg caffeine-toggle"
-label = "Caffeine"
-glyph = "coffee"
-countdown_seconds = 0.0
-enabled = true
-shortcut = "c"
-variant = "secondary"
-
-[[shell.session.actions]]
-action = "lock"
-countdown_seconds = 0.0
-enabled = true
-shortcut = "1"
-variant = "default"
-
-[[shell.session.actions]]
-action = "logout"
-countdown_seconds = 0.0
-enabled = true
-shortcut = "2"
-variant = "outline"
-
-[[shell.session.actions]]
-action = "lock_and_suspend"
-countdown_seconds = 0.0
-enabled = true
-shortcut = "3"
-variant = "default"
-
-[[shell.session.actions]]
-action = "command"
-command = "reboot"
-label = "Reboot"
-glyph = "reboot"
-countdown_seconds = 0.0
-enabled = true
-shortcut = "4"
-variant = "primary"
-
-[[shell.session.actions]]
-action = "command"
-command = "poweroff"
-label = "Shut Down"
-glyph = "power"
-countdown_seconds = 0.0
-enabled = true
-shortcut = "5"
-variant = "destructive"
-
-[[shell.session.actions]]
-action = "command"
-command = "notify-send -i dialog-warning -t 33333 'HI ALFIN😈' \"All it is about FREEDOM.\\nTo get FREEDOM you need COST!\\nNever FORGET if 'Big money never comes clean'.\\nThe IMPORTANT thing is 'YOU CAN CHEAT IF YOU WANT, BUT DONNOT DRAG ANYONE ELSE DOWN!!!\" && ~/.config/noctalia/hooks/passkey"
-label = "ALFIN"
-glyph = "user"
-countdown_seconds = 0.0
-enabled = true
-shortcut = "0"
-variant = "secondary"

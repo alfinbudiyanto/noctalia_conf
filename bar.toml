@@ -1,0 +1,62 @@
+[bar]
+order = [ "default" ]
+
+    [bar.default]
+    end = [ "tray", "notifications", "clipboard", "network", "bluetooth", "group:g1", "control-center", "session" ]
+    start = [ "launcher", "wallpaper", "workspaces", "group:g2" ]
+
+        [[bar.default.capsule_group]]
+        accordion = false
+        accordion_direction = "end"
+        border = "tertiary"
+        enabled = true
+        fill = "surface_variant"
+        id = "g1"
+        members = [ "volume", "brightness", "battery" ]
+        opacity = 1.0
+        padding = 6.0
+
+        [[bar.default.capsule_group]]
+        accordion = false
+        accordion_direction = "end"
+        border = "tertiary"
+        enabled = true
+        fill = "surface_variant"
+        id = "g2"
+        members = [ "now-playing", "media" ]
+        opacity = 1.0
+        padding = 6.0
+
+            # end
+            [widget.tray]
+            capsule = true
+            capsule_border = "tertiary"
+
+            [widget.network]
+            capsule = true
+
+            #center
+            [widget.clock]
+            format	= "{:%-I:%M %p}"
+
+            # start
+            [widget.workspaces]
+            capsule = true
+            capsule_border = "tertiary"
+            empty_color = "tertiary"
+            focused_color = "secondary"
+            occupied_color = "primary"
+
+    [bar.default.monitor.dp1]
+    match = "DP-1"
+    margin_ends = 350
+    end = [ "group:g2" ]
+    center = [ "clock" ]
+    start = [ "workspaces" ]
+
+    [bar.default.monitor.hdmia1]
+    match = "HDMI-A-1"
+    margin_ends = 350
+    end = [ "group:g2" ]
+    center = [ "clock" ]
+    start = [ "workspaces" ]

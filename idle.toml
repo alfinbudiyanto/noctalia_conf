@@ -1,0 +1,26 @@
+# # Examples
+# - Monitor: “Welcome back, ALFIN! Your monitors have been turned back on.”
+# - Lock: “Welcome back, ALFIN! Your session has been unlocked.”
+# - Suspend: “Welcome back, ALFIN! Your system has resumed from suspend.” 
+[idle]
+behavior_order = [ "idle-behavior", "Screen Off", "idle-behavior-2" ]
+pre_action_fade_seconds = 13
+
+    [idle.behavior.idle-behavior]
+    action = "lock"
+    enabled = true
+    resume_command = "notify-send 'Idle Lock' \"Welcome back Alfin!\\nYou're comeback once idle lock\""
+    timeout = 180.0
+
+    [idle.behavior."Screen Off"]
+    action = "command"
+    command = "wlopm --off '*'"
+    enabled = true
+    resume_command = "wlopm --on '*' && notify-send 'Idle Screen Off' \"Welcome back, ALFIN!\\nYou're comeback once idle screen off.\""
+    timeout = 300.0
+
+    [idle.behavior.idle-behavior-2]
+    action = "lock_and_suspend"
+    enabled = true
+    resume_command = "notify-send 'Idle Sleep' \"Welcome back Alfin!\\nYou're comeback once idle sleep\""
+    timeout = 1980.0
