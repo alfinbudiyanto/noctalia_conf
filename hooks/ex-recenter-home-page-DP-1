@@ -1,41 +1,50 @@
 #!/usr/bin/env bash
 
-# 1. Definisi Fungsi
+# to handle clean exit when program is want to stop(Ctrl+C)
+trap "exit 0" SIGINT SIGTERM
+
+# declare func
 get_monitor() {
     (driftwm msg state | awk '$1 == "DP-1" || $2 == "DP-1" {print "DP-1"}') 2>/dev/null | head -n 1
 }
 
 get_active_monitor() {
-    # LOGIKA BARU: Hanya aktifkan pencarian jika sudah melewati kata 'outputs'
+    # Memeriksa tanda bintang '*' murni di bawah blok outputs agar aman dari daftar windows
     (driftwm msg state | awk '/^outputs/ {in_outputs=1} in_outputs && $1 == "*" {print $2}') 2>/dev/null | head -n 1
 }
 
-# 2. Skrip Utama (Main Loop)
+# main script
 while true; do
     output=$(get_monitor)
 
-    # Loop penahan: Diam selama monitor DP-1 tidak terdeteksi (kosong)
+    # scanning/detecting external monitor by port VGA as DP-1
     while [[ -z "$output" ]]; do
         output=$(get_monitor)
         sleep 1
     done
 
-    # Kondisi ketika monitor DP-1 terdeteksi baru saja TERHUBUNG
+    # when external monitor just was detected
     if [[ "$output" == "DP-1" ]]; then        
-        # Cek monitor mana yang memegang tanda bintang '*' di bagian outputs
         active_now=$(get_active_monitor)
 
-        # HANYA jalankan perintah jika monitor kedua (DP-1) langsung menjadi yang aktif/fokus
-        if [[ "$active_now" == "DP-1" ]]; then
+        # automatically move the external monitor camera by driftwm when external monitor has been active(THE GOAL)
+        while [[ "$active_now" != "DP-1" ]]; do
             sleep 1
-            driftwm msg camera 0 17
-        fi
+            active_now=$(get_active_monitor)
+        done
 
-        # Loop pengunci: Tahan skrip di sini selama monitor DP-1 masih dicolok
+        # move the external monitor camera by driftwm
+        sleep 1.5
+        driftwm msg camera 0 17
+
+        # handle to detecting external monitor stay connected
         while [[ "$output" == "DP-1" ]]; do
             output=$(get_monitor)
             sleep 1
         done
+
+        # safest improvement to reset the cursor state when the external monitor was plugged off
+        active_now=""
     fi
 
     sleep 1
