@@ -10,6 +10,7 @@ started = [
     "~/.config/noctalia/shortcuts/menus",
     "~/.config/noctalia/widgets/wallpaper",
     "~/.config/noctalia/hooks/recenter-home-page",
+    "~/.config/noctalia/hooks/ex-recenter-home-page-DP-1",
     #"~/.config/noctalia/shortcuts/internal-speaker",
     #"~/.config/noctalia/shortcuts/external-speaker",
 ]
