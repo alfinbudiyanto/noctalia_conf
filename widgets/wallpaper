@@ -1,19 +1,19 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-TARGET_IMG="${XDG_STATE_HOME:-$HOME/.config/noctalia}/assets/images/wallpaper.jpg"
-TARGET_HEIGHT=720
+image="${XDG_STATE_HOME:-$HOME/.config/noctalia}/assets/images/wallpaper.jpg"
+height=720
 
-[[ -f "$TARGET_IMG" ]] || {
-    notify-send -i dialog-warning '404' "Error: Image not found at $TARGET_IMG"
+[[ -f "$image" ]] || {
+    notify-send -i dialog-warning '404' "Error: Image not found at $image"
     exit 0
 }
 
 # Get original dimensions using ImageMagick
-read -r ORIG_W ORIG_H <<< $(identify -format "%w %h" "$TARGET_IMG")
+read -r real_width real_height <<< $(identify -format "%w %h" "$image")
 
 # Calculate proportional width
-TARGET_WIDTH=$(( ORIG_W * TARGET_HEIGHT / ORIG_H ))
+width=$(( real_width * height / real_height ))
 
 # Launch imv with a specific window class name
-imv -c widget-img -W "$TARGET_WIDTH" -H "$TARGET_HEIGHT" "$TARGET_IMG"
+imv -c widget-img -W "$width" -H "$height" "$image"
