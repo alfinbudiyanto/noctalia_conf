@@ -4,6 +4,7 @@ started = [
     "systemctl --user start noctalia-ready.target",
     "/usr/libexec/xfce-polkit",
     "driftmap --width 256 --height 144 --canvas 24242433 --active-window b85cff67 --window 9fa8c767 --suspended 4a4a4a56",
+    "~/.src/driftwm-desktop/driftwm-desktop",
     "~/.config/noctalia/hooks/wifi-startup",
     "~/.config/noctalia/hooks/bluetooth-startup",
     "~/.config/noctalia/shortcuts/virtual-cable-pipewire",
