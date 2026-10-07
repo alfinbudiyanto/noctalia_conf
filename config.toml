@@ -35,8 +35,8 @@ monitors = [ "eDP-1" ]      # connectors that show the lock screen; empty = all 
 [location]
 auto_locate = true
 custom_schedule = true
-sunrise = "07:00"
-sunset = "17:00"
+sunrise = "07:30"
+sunset = "16:30"
 
 [nightlight]
 enabled = true
