@@ -3,7 +3,7 @@
 # to handle clean exit when program is want to stop(Ctrl+C)
 trap "exit 0" SIGINT SIGTERM
 
-monitor="DP-1"
+monitor="HDMI-A-1"
 
 # declare func
 get_monitor() {

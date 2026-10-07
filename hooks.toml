@@ -12,8 +12,9 @@ started = [
     "~/.config/noctalia/widgets/wallpaper",
     "~/.config/noctalia/hooks/recenter-home-page",
     "~/.config/noctalia/hooks/ex-recenter-home-page-DP-1",
+    "~/.config/noctalia/hooks/ex-recenter-home-page-HDMI-A-1",
     #"~/.config/noctalia/shortcuts/internal-speaker",
-    #"~/.config/noctalia/shortcuts/external-speaker",
+    #"~/.config/noctalia/shortcuts/external-speaker"
 ]
 # Combine normal shell commands with Noctalia IPC commands.
 session_locked = [
