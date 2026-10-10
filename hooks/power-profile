@@ -1,14 +1,11 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-case "${NOCTALIA_POWER_PROFILE:-}" in
-    power-saver)
-        noctalia msg brightness-set eDP-1 3
-        ;;
-    balanced|performance)
-        noctalia msg brightness-set eDP-1 10
-        ;;
-esac
+if [[ "${NOCTALIA_POWER_PROFILE:-}" == "power-saver" ]]; then
+    if [[ "${NOCTALIA_BRIGHTNESS_PERCENT:-}" < "5" ]]; then
+        noctalia msg brightness-set eDP-1 5
+    fi
+fi
 
 power_profile_prev="${NOCTALIA_POWER_PROFILE_PREVIOUS:-}"
 
