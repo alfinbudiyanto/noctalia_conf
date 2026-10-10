@@ -3,16 +3,41 @@
 # to handle clean exit when program is want to stop(Ctrl+C)
 trap "exit 0" SIGINT SIGTERM
 
-monitor="HDMI-A-1"
+# HDMI-A-2 (real name by driftwm output)
+monitor="HDMI-A-2"
 
 # declare func
 get_monitor() {
-    (driftwm msg state | awk -v mon="$monitor" '$1 == mon || $2 == mon {print mon}') 2>/dev/null | head -n 1
+    driftwm msg state | awk -v mon="$monitor" '
+        $1 == mon || $2 == mon {
+            print mon
+            exit
+        }
+    ' 2>/dev/null
 }
 
 get_active_monitor() {
-    # Memeriksa tanda bintang '*' murni di bawah blok outputs agar aman dari daftar windows
-    (driftwm msg state | awk '/^outputs/ {in_outputs=1} in_outputs && $1 == "*" {print $2}') 2>/dev/null | head -n 1
+    driftwm msg state | awk '
+        /^outputs/ {in_outputs=1}
+        in_outputs && $1 == "*" {
+            print $2
+            exit
+        }
+    ' 2>/dev/null
+}
+
+get_coordinate() {
+    driftwm msg state | awk '
+        /^outputs/ {in_outputs=1}
+        in_outputs && $1 == "*" {
+            for(i=1; i<=NF; i++) {
+                if($i == "camera") {
+                    print $(i+1), $(i+2)
+                    exit
+                }
+            }
+        }
+    ' 2>/dev/null
 }
 
 # main script
@@ -20,7 +45,7 @@ while true; do
     # scanning/detecting external monitor by port VGA as DP-1
     # here | v | (the landing place of (CONTINUE 2))
     while [[ -z "$(get_monitor)" ]]; do
-        sleep 2
+        sleep 3
     done
 
     # when external monitor just was detected
@@ -34,15 +59,21 @@ while true; do
             sleep 1
         done
 
-        # move the external monitor camera by driftwm
-        sleep 1.5
-        driftwm msg camera 0 17
+        read -r X Y < <(get_coordinate)
+        if [[ "$X" != "0" && "$Y" != "17" || "$Y" != "17" && "$X" != "0" ]]; then
+            # move the external monitor camera by driftwm
+            sleep 1.5
+            driftwm msg camera 0 17
+        fi
 
         # handle to detecting external monitor stay connected
         while [[ -n "$(get_monitor)" ]]; do
-            sleep 2
+            sleep 3
         done
     fi
 
     sleep 1
 done
+
+
+# if position has been 0 17 just skip

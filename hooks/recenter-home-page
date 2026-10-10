@@ -1,7 +1,25 @@
 #!/usr/bin/env bash
+set -euo pipefail
+
+get_coordinate() {
+    driftwm msg state | awk '
+        /^outputs/ {in_outputs=1}
+        in_outputs && $1 == "*" {
+            for(i=1; i<=NF; i++) {
+                if($i == "camera") {
+                    print $(i+1), $(i+2)
+                    exit
+                }
+            }
+        }
+    ' 2>/dev/null
+}
 
 # stop for a sec to make sure everthing is ready, main target is noctalia bar, yes only waiting for a bar ready
 sleep 3
+
+read -r X Y < <(get_coordinate)
+[[ "$X" != "0" && "$Y" != "17" || "$Y" != "17" && "$X" != "0" ]] || exit 0
 
 # then recenter home page point automatically
 driftwm msg camera 0 17
