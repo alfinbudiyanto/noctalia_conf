@@ -24,7 +24,7 @@ order = [ "default" ]
     start = [ "workspaces" ]
 
     [bar.default.monitor.hdmia1]
-    match = "HDMI-A-1"
+    match = "HDMI-A-2"
     margin_ends = 350
     end = [ "media" ]
     center = [ "clock" ]
