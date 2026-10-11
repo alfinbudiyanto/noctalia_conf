@@ -26,6 +26,10 @@ printf '%s\n' "$percent" > "$state_file"
 [[ "$battery_state" == "discharging" ]] || exit 0
 [[ "$previous" =~ ^[0-9]+$ ]] || exit 0
 
+if (( previous >= 80 && percent < 80 )) && [[ "${NOCTALIA_POWER_PROFILE:-}" == "performance" ]]; then
+    noctalia msg power-set balanced
+fi
+
 # Fire once when crossing below the threshold, not every time the battery changes below it.
 if (( previous >= threshold && percent < threshold )); then
     notify-send -u critical "Battery low" "Battery is ${percent}%."
