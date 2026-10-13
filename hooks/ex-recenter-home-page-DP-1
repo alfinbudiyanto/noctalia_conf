@@ -53,14 +53,14 @@ while true; do
         # automatically move the external monitor camera by driftwm when external monitor has been active(THE GOAL)
         while [[ "$(get_active_monitor)" != "$monitor" ]]; do
             if [[ -z "$(get_monitor)" ]]; then
-                continue 2 # jump to | ^ |
+                continue 2  # jump to | ^ |
             fi
 
             sleep 1
         done
 
         read -r X Y < <(get_coordinate)
-        if [[ "$X" != "0" && "$Y" != "17" || "$Y" != "17" && "$X" != "0" ]]; then
+        if [[ "$X" != "0" || "$Y" != "17" ]]; then
             # move the external monitor camera by driftwm
             sleep 1.5
             driftwm msg camera 0 17

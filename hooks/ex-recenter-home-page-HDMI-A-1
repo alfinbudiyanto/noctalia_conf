@@ -60,7 +60,7 @@ while true; do
         done
 
         read -r X Y < <(get_coordinate)
-        if [[ "$X" != "0" && "$Y" != "17" || "$Y" != "17" && "$X" != "0" ]]; then
+        if [[ "$X" != "0" || "$Y" != "17" ]]; then
             # move the external monitor camera by driftwm
             sleep 1.5
             driftwm msg camera 0 17
@@ -74,6 +74,3 @@ while true; do
 
     sleep 1
 done
-
-
-# if position has been 0 17 just skip

@@ -19,7 +19,7 @@ get_coordinate() {
 sleep 3
 
 read -r X Y < <(get_coordinate)
-[[ "$X" != "0" && "$Y" != "17" || "$Y" != "17" && "$X" != "0" ]] || exit 0
+[[ "$X" != "0" || "$Y" != "17" ]] || exit 0
 
 # then recenter home page point automatically
 driftwm msg camera 0 17
