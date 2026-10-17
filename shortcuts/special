@@ -2,12 +2,6 @@
 set -euo pipefail
 
 panel_id="${1:-panel-toggle launcher}"
-panel=$(noctalia msg status | grep '"activePanelId"' | awk '{print $2}' | tr -d ',"')
-
-[[ "$panel" == "null" ]] || {
-    noctalia msg "$panel_id"
-    exit 0
-}
 
 fuzzel --output=eDP-1 --width=0 --lines=0 --hide-prompt &
 fuzzel_pid=$!
