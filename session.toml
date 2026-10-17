@@ -31,7 +31,7 @@ grid_columns = 2
 
     [[shell.session.actions]]
     action = "logout"
-    countdown_seconds = 0.0
+    countdown_seconds = 5.0
     enabled = true
     shortcut = "2"
     variant = "outline"
@@ -48,7 +48,7 @@ grid_columns = 2
     command = "reboot"
     label = "Reboot"
     glyph = "reboot"
-    countdown_seconds = 0.0
+    countdown_seconds = 3.0
     enabled = true
     shortcut = "4"
     variant = "primary"
@@ -58,7 +58,7 @@ grid_columns = 2
     command = "poweroff"
     label = "Shut Down"
     glyph = "power"
-    countdown_seconds = 0.0
+    countdown_seconds = 3.0
     enabled = true
     shortcut = "5"
     variant = "destructive"

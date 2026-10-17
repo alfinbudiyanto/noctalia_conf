@@ -7,14 +7,14 @@ started = [
     "~/.src/driftwm-desktop/driftwm-desktop",
     "~/.config/noctalia/hooks/wifi-startup",
     "~/.config/noctalia/hooks/bluetooth-startup",
-    "~/.config/noctalia/shortcuts/virtual-cable-pipewire",
     "~/.config/noctalia/widgets/wallpaper",
     "~/.config/noctalia/hooks/recenter-home-page",
     "~/.config/noctalia/hooks/ex-recenter-home-page-DP-1",
     "~/.config/noctalia/hooks/ex-recenter-home-page-HDMI-A-1",
-    "~/.config/noctalia/shortcuts/menus",
-    #"~/.config/noctalia/shortcuts/internal-speaker",
-    #"~/.config/noctalia/shortcuts/external-speaker"
+    "~/.config/noctalia/hooks/virtual-cable-pipewire",
+    "~/.config/noctalia/hooks/menus",
+    #"~/.config/noctalia/hooks/internal-speaker",
+    #"~/.config/noctalia/hooks/external-speaker"
 ]
 # Combine normal shell commands with Noctalia IPC commands.
 session_locked = [
