@@ -14,3 +14,11 @@ if nothing (`-x`) you have to do this!
 ```
 chmod +x ~/.config/noctalia/hooks/name-file.sh
 ```
+
+## Input Output
+
+to unload modules when the pipewire got annoying error
+```
+pactl unload-module module-null-sink
+pactl unload-module module-loopback
+```
