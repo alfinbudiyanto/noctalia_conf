@@ -1,19 +1,32 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-if [[ "${NOCTALIA_POWER_PROFILE:-}" == "power-saver" ]]; then
-    if [[ "${NOCTALIA_BRIGHTNESS_PERCENT:-}" < "5" ]]; then
-        noctalia msg brightness-set eDP-1 5
-    fi
-fi
-
-power_profile_prev="${NOCTALIA_POWER_PROFILE_PREVIOUS:-}"
-
 state_dir="${XDG_STATE_HOME:-$HOME/.local/state}/noctalia"
-state_file="$state_dir/power-profile-prev"
+state_file_ppp="$state_dir/prev-power-profile"
+state_file_cpp="$state_dir/current-power-profile"
+
+current="${NOCTALIA_POWER_PROFILE:-}"
+prev="${NOCTALIA_POWER_PROFILE_PREVIOUS:-}"
 
 mkdir -p "$state_dir"
 
-[[ -n "$power_profile_prev" ]] || exit 0
+[[ -n "$current" ]] || {
+    notify-send -i dialog-warning "Noctalia Error" 'State file "current-power-profile" is empty or unreadable'
+    exit 0
+}
 
-printf '%s\n' "$power_profile_prev" > "$state_file"
+[[ -n "$prev" ]] || {
+    notify-send -i dialog-warning "Noctalia Error" 'State file "previous-power-profile" is empty or unreadable'
+    exit 0
+}
+
+printf '%s\n' "$current" > "$state_file_cpp"
+printf '%s\n' "$prev" > "$state_file_ppp"
+
+brightness="${NOCTALIA_BRIGHTNESS_PERCENT:-}"
+
+[[ -n "$brightness" ]] || exit 0
+
+{ [[ "$current" == "power-saver" ]] && (( brightness != 5 )); } || exit 0
+
+noctalia msg brightness-set eDP-1 5

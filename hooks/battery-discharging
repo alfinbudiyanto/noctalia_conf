@@ -2,12 +2,23 @@
 set -euo pipefail
 
 state_dir="${XDG_STATE_HOME:-$HOME/.local/state}/noctalia"
-state_file="$state_dir/power-profile-prev"
 
-previous=""
-[[ -r "$state_file" ]] && previous="$(<"$state_file")"
+state_file_bp="$state_dir/battery-percent"
+battery_percent=""
+[[ -r "$state_file_bp" ]] && battery_percent="$(<"$state_file_bp")"
+[[ -n "$battery_percent" ]] || {
+    notify-send -i dialog-warning "Noctalia Error" 'State file "battery-percent" is empty or unreadable'
+    exit 0
+}
 
-[[ -n "$previous" ]] || exit 0
-[[ "$previous" != "performance" ]] || exit 0
+state_file_cpp="$state_dir/current-power-profile"
+current=""
+[[ -r "$state_file_cpp" ]] && current="$(<"$state_file_cpp")"
+[[ -n "$current" ]] || {
+    notify-send -i dialog-warning "Noctalia Error" 'State file "current-power-profile" is empty or unreadable'
+    exit 0
+}
 
-noctalia msg power-set "$previous"
+{ (( battery_percent < 25 )) && [[ "$current" != "power-saver" ]]; } || exit 0
+
+noctalia msg power-set power-saver

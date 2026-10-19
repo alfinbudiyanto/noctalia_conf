@@ -2,12 +2,31 @@
 set -euo pipefail
 
 state_dir="${XDG_STATE_HOME:-$HOME/.local/state}/noctalia"
-state_file="$state_dir/power-profile-prev"
 
-previous=""
-[[ -r "$state_file" ]] && previous="$(<"$state_file")"
+state_file_ppp="$state_dir/prev-power-profile"
+prev=""
+[[ -r "$state_file_ppp" ]] && prev="$(<"$state_file_ppp")"
+[[ -n "$prev" ]] || {
+    notify-send -i dialog-warning "Noctalia Error" 'State file "previous-power-profile" is empty or unreadable'
+    exit 0
+}
 
-[[ -n "$previous" ]] || exit 0
-[[ "$previous" != "power-saver" ]] || exit 0
+[[ "$prev" != "power-saver" ]] || exit 0        # when this line is pass the previous only between balanced & performance
+                                                #? what is this for?
+                                                ## well, when the previous state is power-saver, never roll back to previous
+                                                ## why never let is roll back when previous state is power-saver?
+                                                ## it is because when charging happens not always because the battery is almost empty and
+                                                ## when the battery is almost empty it has been power-saver mode then never set it again to the same mode
 
-noctalia msg power-set "$previous"
+state_file_cpp="$state_dir/current-power-profile"
+current=""
+[[ -r "$state_file_cpp" ]] && current="$(<"$state_file_cpp")"
+[[ -n "$current" ]] || {
+    notify-send -i dialog-warning "Noctalia Error" 'State file "current-power-profile" is empty or unreadable'
+    exit 0
+}
+
+[[ "$current" == "power-saver" ]] || exit 0     # when this is pass tho, the current power profile must power-saver
+                                                #? what is this for?
+                                                ## well, when the the curret power profile is balanced or performance before charging, just let it, let me to decide to chooce the power profile
+noctalia msg power-set "$prev"

@@ -3,6 +3,7 @@ set -euo pipefail
 
 # Use the threshold from the hook command, or fall back to 20%.
 threshold="${NOCTALIA_BATTERY_THRESHOLD:-20}"
+reminder="${NOCTALIA_BATTERY_REMINDER:-30}"
 
 # Keep a tiny state file so the script can compare this event with the last one.
 state_dir="${XDG_STATE_HOME:-$HOME/.local/state}/noctalia"
@@ -26,8 +27,9 @@ printf '%s\n' "$percent" > "$state_file"
 [[ "$battery_state" == "discharging" ]] || exit 0
 [[ "$previous" =~ ^[0-9]+$ ]] || exit 0
 
-if (( previous >= 80 && percent < 80 )) && [[ "${NOCTALIA_POWER_PROFILE:-}" == "performance" ]]; then
-    noctalia msg power-set balanced
+# Reminder to charge
+if (( previous >= reminder && percent < reminder )); then
+    notify-send -i dialog-warning "$battery_state" "Reminder to charge"
 fi
 
 # Fire once when crossing below the threshold, not every time the battery changes below it.
@@ -35,7 +37,18 @@ if (( previous >= threshold && percent < threshold )); then
     notify-send -u critical "Battery low" "Battery is ${percent}%."
     # Or run any other command, for example:
     # systemctl --user start low-battery.target
-    if [[ "${NOCTALIA_POWER_PROFILE:-}" != "power-saver" ]]; then
+
+    # Read current power profile
+    state_file_cpp="$state_dir/current-power-profile"
+    current=""
+    [[ -r "$state_file_cpp" ]] && current="$(<"$state_file_cpp")"
+    [[ -n "$current" ]] || {
+        notify-send -i dialog-warning "Noctalia Error" 'State file "current-power-profile" is empty or unreadable'
+        exit 0
+    }
+
+    # to check current power profil didnt match
+    if [[ "$current" != "power-saver" ]]; then
         noctalia msg power-set power-saver
     fi
 fi
