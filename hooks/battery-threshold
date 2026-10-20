@@ -29,7 +29,7 @@ printf '%s\n' "$percent" > "$state_file"
 
 # Reminder to charge
 if (( previous >= reminder && percent < reminder )); then
-    notify-send -i dialog-warning "$battery_state" "Reminder to charge"
+    notify-send -i dialog-warning -t 25000 "$battery_state" "Reminder to charge"
 fi
 
 # Fire once when crossing below the threshold, not every time the battery changes below it.
