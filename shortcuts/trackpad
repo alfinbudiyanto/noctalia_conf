@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+driftwm msg action "set-trackpad toggle"
+noctalia msg notification-show 'Trackapd' "Trackpad toggled On/Off!"
