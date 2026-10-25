@@ -1,3 +1,9 @@
+## Noctalia Requirement
+- installation emoji
+```
+sudo dnf install google-noto-emoji-color-fonts
+```
+
 ### specific to test when charging or discharging
 
 - Run the Script Manually with Injected Variables
